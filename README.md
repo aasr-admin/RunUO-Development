@@ -1,6 +1,6 @@
 uoAvocation: Server-Development - RunUO_v2.7 
 ==========================================================
-An Ultima Online™ Server Emulator  |  .NET Framework 4.5.2
+An Ultima Online™ Server Emulator  |  .NET Framework 4.7.2
 
 This repository has been left unmodified and is currently being maintained by the uoAvocation development team.
 ***

@@ -1,4 +1,3 @@
-using System.Resources;
 /***************************************************************************
 *                              AssemblyInfo.cs
 *                            -------------------
@@ -19,6 +18,7 @@ using System.Resources;
  *
  ***************************************************************************/
 
+using System.Resources;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -47,7 +47,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("2.7.0.452")]
+[assembly: AssemblyVersion("2.7.0.472")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
