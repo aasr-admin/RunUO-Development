@@ -1,0 +1,68 @@
+
+# Project Assemblies
+/Server/bin
+/Server/obj
+/Scripts/bin
+/Scripts/obj
+/Scripts/Output
+
+# Common Directories
+/.vs
+/.JustCode
+/runtimes
+/ref
+/Logs
+/Backups
+/Saves
+/Web
+/Docs
+/Reports
+
+# Custom Directories
+/VitaNexCore
+/Leaderboard
+/UltimaLive
+/TheBox
+/Export
+/Cache
+
+# Build Files
+/RunUO.dll
+/Server.dll
+/Scripts.dll
+/Settings.dll
+/RunUO*.json
+/Scripts*.json
+
+# Common Files
+/System.*.dll
+/Microsoft.*.dll
+
+# Custom Files
+/firewall.cfg
+/Scripts/Misc/DataPath.cs
+/Scripts/Misc/ServerList.cs
+
+# Wildcard Files
+*.pdb
+*.exe
+*.exe.mdb
+*.exe.config
+*.dll.config
+*.sh
+*.suo
+*.idea
+*.log
+*.bin
+*.csproj.user
+*.DotSettings.user
+*.ini
+
+# Include Data Files
+!/Data/*
+!/Data/Binary/*
+
+# Exclude Data Files
+/Data/PVPTournamentSystemData
+/Data/Emails.xml
+/Data/RAF.xml

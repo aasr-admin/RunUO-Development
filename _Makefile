@@ -1,0 +1,34 @@
+MCS=mcs
+EXENAME=RunUO
+CURPATH=`pwd`
+SRVPATH=${CURPATH}/Server
+ICOPATH=${SRVPATH}/runuo.ico
+REFS=System.dll,System.Core.dll,System.Data.dll,System.Drawing.dll,System.Web.dll,System.Xml.dll
+DEFS=-d:MONO -d:RunUO -d:NEWTIMERS -d:NEWPARENT
+NOWARNS=0618,0219,0414,1635
+
+PHONY : default build clean run
+
+default: run
+
+debug: 
+	${MCS} -target:exe -out:"${CURPATH}/${EXENAME}.exe" -win32icon:"${ICOPATH}" -r:${REFS} -nowarn:${NOWARNS} -d:DEBUG ${DEFS} -nologo -debug -unsafe -recurse:"${SRVPATH}/*.cs"
+	"${CURPATH}/${EXENAME}.sh"
+run: build
+	"${CURPATH}/${EXENAME}.sh"
+
+build: ${EXENAME}.sh
+
+clean:
+	rm -f ${EXENAME}.sh
+	rm -f ${EXENAME}.exe
+	rm -f ${EXENAME}.exe.mdb
+	rm -f *.bin
+
+${EXENAME}.exe: ${SRVPATH}/*.cs 
+	${MCS} -target:exe -out:"${CURPATH}/${EXENAME}.exe" -win32icon:"${ICOPATH}" -r:${REFS} -nowarn:${NOWARNS} ${DEFS} -nologo -optimize -unsafe -recurse:"${SRVPATH}/*.cs"
+
+${EXENAME}.sh: ${EXENAME}.exe
+	echo "#!/bin/sh" > "${CURPATH}/${EXENAME}.sh"
+	echo "mono \"${CURPATH}/${EXENAME}.exe\"" >> "${CURPATH}/${EXENAME}.sh"
+	chmod a+x "${CURPATH}/${EXENAME}.sh"

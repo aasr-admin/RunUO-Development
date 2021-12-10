@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<OutputPath>.\Output\</OutputPath>
+		<TargetFramework>net452</TargetFramework>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<ServerGarbageCollection>true</ServerGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+		<RootNamespace>Server</RootNamespace>
+		<AssemblyName>Scripts.CS</AssemblyName>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DefineConstants>TRACE;DEBUG;NEWTIMERS;NEWPARENT</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DefineConstants>NEWTIMERS;NEWPARENT</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Server\Server.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="System.Web" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Output\**" />
+		<EmbeddedResource Remove="Output\**" />
+		<None Remove="Output\**" />
+	</ItemGroup>
+</Project>
