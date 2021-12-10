@@ -245,7 +245,7 @@ namespace Server.Engines.UOStore
 
 				var ac = reader.ReadInt();
 
-				var list = new HashSet<IAccount>();
+				var list = new HashSet<IAccount>(ac);
 
 				while (--ac >= 0)
 				{

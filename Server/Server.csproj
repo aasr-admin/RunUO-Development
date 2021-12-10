@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<OutputPath>..\</OutputPath>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -24,4 +24,11 @@
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<DefineConstants>NEWTIMERS;NEWPARENT</DefineConstants>
 	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
+	  <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<RuntimeHostConfigurationOption Include="System.Globalization.UseNls" Value="true" />
+	</ItemGroup>
 </Project>

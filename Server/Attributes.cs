@@ -59,6 +59,19 @@ namespace Server
 	[AttributeUsage( AttributeTargets.Method )]
 	public class CallPriorityAttribute : Attribute
 	{
+		public static int GetValue(MethodInfo m)
+		{
+			if (m == null)
+				return 0;
+
+			var a = m.GetCustomAttribute<CallPriorityAttribute>(false);
+
+			if (a != null)
+				return a.Priority;
+
+			return 0;
+		}
+
 		private int m_Priority;
 
 		public int Priority

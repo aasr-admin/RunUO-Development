@@ -3,56 +3,29 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
-using Emit = System.Reflection.Emit;
 
 namespace Server
 {
 	public class AssemblyEmitter
 	{
-		private string m_AssemblyName;
+		private readonly AssemblyBuilder m_AssemblyBuilder;
+		private readonly ModuleBuilder m_ModuleBuilder;
 
-		private AppDomain m_AppDomain;
-		private AssemblyBuilder m_AssemblyBuilder;
-		private ModuleBuilder m_ModuleBuilder;
-
-		public AssemblyEmitter( string assemblyName, bool canSave )
+		public AssemblyEmitter( string assemblyName )
 		{
-			m_AssemblyName = assemblyName;
-
-			m_AppDomain = AppDomain.CurrentDomain;
-
-			m_AssemblyBuilder = m_AppDomain.DefineDynamicAssembly(
+			m_AssemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(
 				new AssemblyName( assemblyName ),
-				canSave ? AssemblyBuilderAccess.RunAndSave : AssemblyBuilderAccess.Run
+				AssemblyBuilderAccess.RunAndCollect
 			);
 
-			if ( canSave )
-			{
-				m_ModuleBuilder = m_AssemblyBuilder.DefineDynamicModule(
-					assemblyName,
-					String.Format( "{0}.dll", assemblyName.ToLower() ),
-					false
-				);
-			}
-			else
-			{
-				m_ModuleBuilder = m_AssemblyBuilder.DefineDynamicModule(
-					assemblyName,
-					false
-				);
-			}
+			m_ModuleBuilder = m_AssemblyBuilder.DefineDynamicModule(
+				assemblyName
+			);
 		}
 
 		public TypeBuilder DefineType( string typeName, TypeAttributes attrs, Type parentType )
 		{
 			return m_ModuleBuilder.DefineType( typeName, attrs, parentType );
-		}
-
-		public void Save()
-		{
-			m_AssemblyBuilder.Save(
-				String.Format( "{0}.dll", m_AssemblyName.ToLower() )
-			);
 		}
 	}
 

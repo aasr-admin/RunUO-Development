@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<OutputPath>.\Output\</OutputPath>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -23,10 +23,13 @@
 		<DefineConstants>NEWTIMERS;NEWPARENT</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
+	  <PackageReference Include="System.Data.Odbc" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup>
 		<ProjectReference Include="..\Server\Server.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="System.Web" />
+		<RuntimeHostConfigurationOption Include="System.Globalization.UseNls" Value="true" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="Output\**" />

@@ -1,3 +1,5 @@
+#if !MONO
+#pragma warning disable CA1416 // Validate platform compatibility
 using System;
 using System.Drawing;
 using System.Collections;
@@ -69,3 +71,4 @@ namespace Server.Engines.Reports
 		}
 	}
 }
+#endif

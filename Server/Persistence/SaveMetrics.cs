@@ -18,16 +18,18 @@
  *
  ***************************************************************************/
 
+#if !MONO
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
+#pragma warning disable CA1416 // Validate platform compatibility
+#endif
 
 namespace Server {
 	public sealed class SaveMetrics : IDisposable {
-		private const string PerformanceCategoryName = "RunUO 2.1";
-		private const string PerformanceCategoryDesc = "Performance counters for RunUO 2.1.";
+		private const string PerformanceCategoryName = "RunUO";
+		private const string PerformanceCategoryDesc = "Performance counters for RunUO";
 
+#if !MONO
 		private PerformanceCounter numberOfWorldSaves;
 
 		private PerformanceCounter itemsPerSecond;
@@ -75,9 +77,7 @@ namespace Server {
 					)
 				);
 
-#if !MONO
 				PerformanceCounterCategory.Create( PerformanceCategoryName, PerformanceCategoryDesc, PerformanceCounterCategoryType.SingleInstance, counters );
-#endif
 			}
 
 			numberOfWorldSaves = new PerformanceCounter( PerformanceCategoryName, "Save - Count", false );
@@ -127,5 +127,21 @@ namespace Server {
 				writtenBytesPerSecond.Dispose();
 			}
 		}
+#else
+		public void Dispose()
+		{ }
+
+		public void OnItemSaved(int numberOfBytes)
+		{ }
+
+		public void OnMobileSaved(int numberOfBytes)
+		{ }
+
+		public void OnGuildSaved(int numberOfBytes)
+		{ }
+
+		public void OnFileWritten(int numberOfBytes)
+		{ }
+#endif
 	}
 }

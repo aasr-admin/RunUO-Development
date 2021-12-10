@@ -72,6 +72,7 @@ namespace Server.Engines.Reports
 			m_StatsHistory.Save();
 			m_StaffHistory.Save();
 
+#if !MONO
 			HtmlRenderer renderer = new HtmlRenderer( "stats", (Snapshot) state, m_StatsHistory );
 			renderer.Render();
 			renderer.Upload();
@@ -79,6 +80,7 @@ namespace Server.Engines.Reports
 			renderer = new HtmlRenderer( "staff", m_StaffHistory );
 			renderer.Render();
 			renderer.Upload();
+#endif
 		}
 
 		public static void FillSnapshot( Snapshot ss )

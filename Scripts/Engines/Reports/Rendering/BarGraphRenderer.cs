@@ -1,3 +1,5 @@
+#if !MONO
+#pragma warning disable CA1416 // Validate platform compatibility
 using System;
 using System.Drawing;
 using System.Collections;
@@ -6,29 +8,6 @@ using System.Drawing.Drawing2D;
 
 namespace Server.Engines.Reports
 {
-	// Modified from MS sample
-
-	//*********************************************************************
-	//
-	// BarGraph Class
-	//
-	// This class uses GDI+ to render Bar Chart.
-	//
-	//*********************************************************************
-
-	public class BarRegion
-	{
-		public int m_RangeFrom, m_RangeTo;
-		public string m_Name;
-
-		public BarRegion( int rangeFrom, int rangeTo, string name )
-		{
-			m_RangeFrom = rangeFrom;
-			m_RangeTo = rangeTo;
-			m_Name = name;
-		}
-	}
-
 	public class BarGraphRenderer : ChartRenderer
 	{
 		private const float _graphLegendSpacer = 15F;
@@ -921,3 +900,4 @@ namespace Server.Engines.Reports
 		}
 	}
 }
+#endif

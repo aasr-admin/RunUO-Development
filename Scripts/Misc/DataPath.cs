@@ -68,6 +68,10 @@ namespace Server.Misc
 
 		private static string GetPath( string subName, string keyName )
 		{
+#if MONO
+			return null;
+#else
+#pragma warning disable CA1416 // Validate platform compatibility
 			try
 			{
 				string keyString;
@@ -102,6 +106,7 @@ namespace Server.Misc
 			{
 				return null;
 			}
+#endif
 		}
 	}
 }
